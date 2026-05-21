@@ -116,6 +116,8 @@ nav {
   transition: all 0.2s;
   cursor: pointer;
   border: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-gold { background: var(--gold); color: var(--navy); }
 .btn-gold:hover { background: var(--gold-light); }
@@ -366,7 +368,26 @@ footer span { color: var(--gold); }
 .references p { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; padding-left: 2rem; text-indent: -2rem; }
 
 @media (max-width: 640px) {
-  .nav-links { display: none; }
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    padding: 0.4rem 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-links a {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.6rem;
+  }
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .hero { padding: 3rem 1.25rem 2.5rem; }
+  .hero-subtitle { font-size: 0.85rem; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .btn { width: 100%; max-width: 280px; text-align: center; padding: 0.9rem 1.5rem; font-size: 1rem; }
   .section { padding: 2.5rem 1.25rem; }
+  .principles-grid, .projects-grid, .spiritual-grid, .contact-grid { grid-template-columns: 1fr; }
 }
