@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethical Dilemma | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a>
+      <a href="ethics.html" class="active">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Ethical Dilemma Analysis</h1>
+    <p>Examining professional ethics through the lens of faith and IT responsibility</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Case Study</p>
+    <h2 class="section-title">Misuse of Admin <span>Privileges</span></h2>
+    <div class="divider"></div>
+
+    <!-- Overview boxes -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+      <div style="background: var(--white); border: 1px solid var(--border); border-top: 4px solid #c0392b; border-radius: 6px; padding: 1.25rem;">
+        <div style="font-size: 0.75rem; color: #c0392b; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem;">The Violation</div>
+        <div style="font-size: 0.9rem; color: var(--text);">Unauthorized access to confidential student records by a system administrator</div>
+      </div>
+      <div style="background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--gold); border-radius: 6px; padding: 1.25rem;">
+        <div style="font-size: 0.75rem; color: var(--gold); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem;">Those Affected</div>
+        <div style="font-size: 0.9rem; color: var(--text);">The sysadmin, affected students, and the institution's IT department</div>
+      </div>
+      <div style="background: var(--white); border: 1px solid var(--border); border-top: 4px solid #27ae60; border-radius: 6px; padding: 1.25rem;">
+        <div style="font-size: 0.75rem; color: #27ae60; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem;">Initial Response</div>
+        <div style="font-size: 0.9rem; color: var(--text);">Access revoked, investigation launched, stricter IAM policies implemented</div>
+      </div>
+    </div>
+
+    <!-- Full analysis -->
+    <div class="ethics-box">
+      <h3>📋 Situation Analysis</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">A system administrator at an educational institution exploited their elevated access privileges to view confidential student records without authorization or legitimate business need. This type of violation — often called "privilege abuse" or "insider threat" — is one of the most serious ethical breaches in IT because it weaponizes trust. The sysadmin was granted administrative access to perform legitimate maintenance duties, not to surveil student data. The misuse was a deliberate choice to exploit technical capability beyond its authorized scope.</p>
+      <p style="color: var(--muted); font-size: 0.9rem;">This case involves multiple ethical failures simultaneously: a breach of confidentiality (students' private records were accessed without consent), a violation of the institution's acceptable use policy, a breach of professional trust, and potential violation of FERPA (Family Educational Rights and Privacy Act), which protects student educational records in the United States. The sysadmin's actions were not a technical error — they were a moral choice that revealed a misalignment between their technical power and their professional integrity.</p>
+    </div>
+
+    <div class="ethics-box">
+      <h3>⚖️ Ethical &amp; Professional Standards Examined</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Reviewing the actions taken against established professional and ethical frameworks:</p>
+      <ul>
+        <li><strong>Principle of Least Privilege (PoLP):</strong> The administrator had access far beyond what their role required for day-to-day duties. Proper IAM policy would have scoped their access to only the systems they needed to maintain — not student record databases. This was an institutional failure as much as a personal one.</li>
+        <li><strong>CompTIA Code of Ethics:</strong> CompTIA's ethical standards require IT professionals to protect the privacy and integrity of data they are entrusted with. Unauthorized access to personal data is an explicit violation. As a certified IT professional, this individual violated their own professional oath.</li>
+        <li><strong>FERPA Compliance:</strong> In a U.S. educational context, accessing student records without educational justification violates federal law. The institution bore legal risk the moment this access occurred.</li>
+        <li><strong>Duty of Care:</strong> IT professionals in institutional roles hold a duty of care to the people whose data they manage. Students trusted the institution with sensitive records; the sysadmin breached that chain of trust.</li>
+      </ul>
+    </div>
+
+    <div class="ethics-box">
+      <h3>🛡️ Actions Taken &amp; Remediation</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">The institutional response addressed both the immediate threat and the systemic gap:</p>
+      <ul>
+        <li>Admin access was immediately revoked pending investigation — the correct first step to stop ongoing harm.</li>
+        <li>A formal investigation was launched to determine the scope of records accessed and the timeline of unauthorized activity.</li>
+        <li>Stricter IAM policies were implemented, including role-based access control (RBAC) with tighter scopes for administrator accounts.</li>
+        <li>Audit logging and access monitoring were enhanced so that future unauthorized access attempts would trigger alerts — a shift from reactive to proactive security.</li>
+        <li>Affected students were (ideally) notified per FERPA breach notification requirements.</li>
+      </ul>
+    </div>
+
+    <div class="ethics-box">
+      <h3>✝️ Spiritual &amp; Personal Reflection</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">This case carries deep meaning for me personally, especially now that I serve as Technology Coordinator for The Church of Jesus Christ of Latter-day Saints, managing 50+ devices and having elevated access across 10 units. The sysadmin in this case had the technical ability to access those records — ability is not authority. The gap between what you <em>can</em> do and what you <em>should</em> do is exactly where integrity lives.</p>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Matthew 25:40 reminds me that how I handle data belonging to the members I serve is not a trivial matter — it is a matter of how I treat the people Christ cares for. Every student record, every church member's personal information, every Springboard student inquiry I handle at my customer support role represents a real person who trusted the institution with their information. That trust is sacred.</p>
+      <p style="color: var(--muted); font-size: 0.9rem;">My spiritual principle of obedience to righteous promptings applies here: when a technical professional faces a moment of temptation to misuse their access — curiosity, personal interest, or peer pressure — the question is not "can I?" but "should I?" Faith and discipline guide me to ask that second question every time. Integrity in IT is not built in dramatic moments of crisis; it is built in the thousand quiet moments when no one is watching and you choose the right path anyway.</p>
+    </div>
+
+    <div class="quote-block">
+      "The strength or weakness of any community is largely determined by the conduct of its individual members." — Gordon B. Hinckley
+      <cite>Applied here: the integrity of an institution's IT systems depends on the individual choices of every administrator who holds privileged access.</cite>
+    </div>
+
+    <div class="ethics-box" style="margin-top: 1.5rem;">
+      <h3>📌 Lessons for My Own IT Practice</h3>
+      <ul>
+        <li>Always operate under the principle of least privilege — request only the access genuinely needed for the task at hand.</li>
+        <li>Treat audit logs as a form of accountability — act as though every access event is being reviewed, because it should be.</li>
+        <li>When in doubt about whether an access action is authorized, stop and ask — never assume permission from technical capability.</li>
+        <li>Advocate for RBAC and access reviews in every environment I work in, whether at a church unit or a cloud internship.</li>
+        <li>Remember that data belongs to the people it describes, not to the administrators who can see it.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · IT 497 Portfolio · Ensign College</p>
+  </footer>
+
+</body>
+</html>
