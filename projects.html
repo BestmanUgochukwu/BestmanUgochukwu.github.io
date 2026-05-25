@@ -177,6 +177,77 @@
     </div>
   </div>
 
+  <!-- Baseball BI Project -->
+  <div style="background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3rem 2rem;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <p class="section-label">IT340 · Business Intelligence Systems</p>
+      <h2 class="section-title">Data Analytics <span>Project</span></h2>
+      <div class="divider"></div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <div class="project-icon">⚾</div>
+          <div>
+            <h3>College Baseball Player Performance Analysis</h3>
+            <div style="color: #a8b8d8; font-size: 0.78rem;">Business Intelligence · SQL · Laman Database · Window Functions</div>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <p>Used SQL window functions and aggregate queries on the Laman database to identify which colleges consistently produce high-performing baseball players, measured by career RBIs. Applied the RANK() window function to rank schools by player production volume. USC and Arizona State tied for first with 53 qualifying players each.</p>
+
+          <div style="background: var(--accent-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; margin-bottom: 1rem;">
+            <div style="font-size: 0.75rem; font-weight: 500; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem;">Key Results</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem;">
+              <div style="text-align: center; padding: 0.5rem; background: white; border-radius: 4px; border: 1px solid var(--border);">
+                <div style="font-size: 1.1rem; font-weight: 700; color: var(--navy);">USC &amp; AZ St</div>
+                <div style="font-size: 0.75rem; color: var(--muted);">Rank #1 — 53 players</div>
+              </div>
+              <div style="text-align: center; padding: 0.5rem; background: white; border-radius: 4px; border: 1px solid var(--border);">
+                <div style="font-size: 1.1rem; font-weight: 700; color: var(--navy);">Stanford</div>
+                <div style="font-size: 0.75rem; color: var(--muted);">Rank #3 — 37 players</div>
+              </div>
+              <div style="text-align: center; padding: 0.5rem; background: white; border-radius: 4px; border: 1px solid var(--border);">
+                <div style="font-size: 1.1rem; font-weight: 700; color: var(--navy);">≥30 RBI</div>
+                <div style="font-size: 0.75rem; color: var(--muted);">Performance threshold</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag">SQL</span>
+            <span class="tag">Window Functions</span>
+            <span class="tag">RANK()</span>
+            <span class="tag">CTEs</span>
+            <span class="tag">Business Intelligence</span>
+            <span class="tag">Data Analysis</span>
+          </div>
+
+          <!-- Week 4 Refinement -->
+          <div style="margin-top: 1.25rem; background: var(--navy); border-radius: 6px; padding: 1.25rem;">
+            <div style="font-size: 0.75rem; color: var(--gold-light); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">🔧 Week 4 Project Refinement</div>
+            <p style="color: #a8b8d8; font-size: 0.85rem; margin-bottom: 0.75rem;">After reflection, I identified three critical limitations in the original project and refined it accordingly:</p>
+            <div style="display: grid; gap: 0.6rem;">
+              <div style="background: rgba(255,255,255,0.06); border-left: 3px solid var(--gold); padding: 0.75rem 1rem; border-radius: 0 4px 4px 0;">
+                <div style="color: var(--gold); font-size: 0.78rem; font-weight: 500; margin-bottom: 0.3rem;">Challenge 1 — Single-Metric Bias</div>
+                <div style="color: #cbd5e8; font-size: 0.82rem;">RBIs are context-dependent — a player on a weak team has fewer RBI opportunities regardless of skill. Fixed by adding a composite score combining RBI (40%), home runs (30%), and batting average (30%), producing two parallel rankings: volume AND quality.</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.06); border-left: 3px solid var(--gold); padding: 0.75rem 1rem; border-radius: 0 4px 4px 0;">
+                <div style="color: var(--gold); font-size: 0.78rem; font-weight: 500; margin-bottom: 0.3rem;">Challenge 2 — No Era Normalization</div>
+                <div style="color: #cbd5e8; font-size: 0.82rem;">The database spans multiple decades. Raw RBI counts from the 1970s cannot be fairly compared to modern players. The refined query now surfaces era context so decision-makers can apply appropriate judgment.</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.06); border-left: 3px solid var(--gold); padding: 0.75rem 1rem; border-radius: 0 4px 4px 0;">
+                <div style="color: var(--gold); font-size: 0.78rem; font-weight: 500; margin-bottom: 0.3rem;">Ethical Issue — Algorithmic Bias</div>
+                <div style="color: #cbd5e8; font-size: 0.82rem;">Volume-based metrics systematically disadvantage schools from smaller conferences or underrepresented regions. Added an ethical disclaimer to the report warning against using single-metric rankings as the sole basis for scouting decisions — protecting players from algorithmic unfairness.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-reflection" style="margin-top: 1rem;">✦ Spiritual Reflection: Data without wisdom is dangerous. Just as we should not judge a person by a single metric, we should not rank institutions by a single statistic. Wisdom means asking not just what the data shows — but what it hides, and who it harms.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Personal Projects -->
   <div class="section">
     <p class="section-label">Personal Projects</p>
