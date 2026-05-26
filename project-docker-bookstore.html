@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker Bookstore on AWS | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a>
+      <a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+        <div style="font-size:2rem;">🐳</div>
+        <div>
+          <h1>From Zero to Production: Full-Stack Bookstore App on AWS Using Docker</h1>
+          <p>Three assignments. Seven breaking problems. One live production deployment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>AWS EC2 + Docker</div>
+      <div class="meta-item"><strong>Stack</strong>Node.js · MySQL · Nginx · Docker Compose</div>
+      <div class="meta-item"><strong>Type</strong>Container Orchestration</div>
+      <div class="meta-item"><strong>Read on Medium</strong><a href="https://medium.com/@ugochukwuafokwalam_6632" target="_blank" style="color:var(--gold);">View Article →</a></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title">What I <span>Built</span></h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);margin-bottom:1.5rem;">A production-grade Docker Compose stack running The EpicBook — a Node.js bookstore application — on AWS EC2, with a proper reverse proxy, healthchecks, named volumes, split networks, structured logging, and environment variable management.</p>
+
+    <div class="arch-box">
+Internet
+    ↓
+[Nginx Reverse Proxy] — Port 80 (PUBLIC)
+    ↓
+[Node.js Express Backend] — Port 3000 (INTERNAL ONLY)
+    ↓
+[MySQL 8 Database] — Port 3306 (ISOLATED NETWORK)
+
+Networks:
+  frontend-network: Nginx ↔ Backend
+  backend-network:  Backend ↔ Database (Nginx CANNOT reach DB)
+
+Volumes:
+  mysql-data (named) — data survives restarts
+  nginx-logs (bind mount) — tail logs without entering container
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1.5rem;">
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;">
+        <div style="font-size:1.5rem;font-weight:700;color:var(--navy);">3</div>
+        <div style="font-size:0.78rem;color:var(--muted);">Containers Running</div>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;">
+        <div style="font-size:1.5rem;font-weight:700;color:var(--navy);">89%</div>
+        <div style="font-size:0.78rem;color:var(--muted);">Image Size Reduction</div>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;">
+        <div style="font-size:1.5rem;font-weight:700;color:var(--navy);">7</div>
+        <div style="font-size:0.78rem;color:var(--muted);">Problems Debugged</div>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;">
+        <div style="font-size:1.5rem;font-weight:700;color:var(--navy);">✅</div>
+        <div style="font-size:0.78rem;color:var(--muted);">All Containers Healthy</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="section-label">The Journey</p>
+      <h2 class="section-title">7 Problems I <span>Debugged</span></h2>
+      <div class="divider"></div>
+      <div class="problem-card">
+        <span class="problem-num">PROBLEM 1</span>
+        <h4>App built for Heroku — JAWSDB_URL meant nothing inside Docker</h4>
+        <p>The original config used Heroku's database addon string. Fix: rewrote config.json production section to use individual host, username, password fields pointing to the database container by its Docker service name.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-num">PROBLEM 2</span>
+        <h4>Localhost means something different inside Docker</h4>
+        <p>Development config had database host set to 127.0.0.1. Inside Docker each container is its own machine. Fix: changed host to "database" — the service name Docker uses for internal DNS resolution.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-num">PROBLEM 3</span>
+        <h4>Models folder was missing — MODULE_NOT_FOUND on every request</h4>
+        <p>Sequelize needed a models folder to define database tables. The folder was not present after cloning. Fix: cloned the original repository into a temp folder and copied the models directory into the project.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-num">PROBLEM 4</span>
+        <h4>Routes had wrong import paths — ../backend/models vs ../models</h4>
+        <p>Both routes files imported from the wrong path. Fix: used sed to replace the incorrect paths in both files to point to the correct location.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-num">PROBLEM 5</span>
+        <h4>Nginx loading two conflicting config files — 502 Bad Gateway</h4>
+        <p>Nginx was loading both a custom nginx.conf and default.conf simultaneously, creating two server blocks on port 80. Fix: updated the Dockerfile to delete default.conf before copying in the custom config.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-num">PROBLEM 6</span>
+        <h4>Database volume had wrong password baked in from earlier failed runs</h4>
+        <p>MySQL remembered the wrong root password from an earlier broken run regardless of environment variables. Fix: ran docker compose down -v to wipe the volume and start completely fresh.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-num">PROBLEM 7</span>
+        <h4>Database was empty — schema expected "bookstore" but we created "epicbook"</h4>
+        <p>The original schema SQL assumed a database called bookstore. Fix: created the bookstore database manually, granted permissions to the app user, and imported the schema and seed files.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Key Skills</p>
+    <h2 class="section-title">What I <span>Learned</span></h2>
+    <div class="divider"></div>
+    <div class="lesson-card"><h4>Multi-Stage Docker Builds</h4><p>Reduced backend image from ~1.3GB to ~145MB (89% reduction) using a build stage and a lean production stage — same technique, applied to Node.js instead of React.</p></div>
+    <div class="lesson-card"><h4>Docker Network Segmentation</h4><p>Split frontend-network and backend-network so Nginx can reach the backend but cannot reach the database. Defense in depth at the container level.</p></div>
+    <div class="lesson-card"><h4>Healthcheck Startup Chains</h4><p>Made the backend wait for the database to be healthy, and Nginx wait for the backend. Eliminated the race condition that caused random startup failures.</p></div>
+    <div class="lesson-card"><h4>Named Volumes vs Bind Mounts</h4><p>Named volumes for persistent data (MySQL), bind mounts for observability (Nginx logs tailable directly on host without entering any container).</p></div>
+    <div class="lesson-card"><h4>Production Debugging Mindset</h4><p>Every error message tells you exactly what is wrong if you read it carefully. 502 Bad Gateway = Nginx cannot reach backend. MODULE_NOT_FOUND = wrong file path. Debugging is not guessing — it is reading.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags">
+        <span class="tag">Docker</span><span class="tag">Docker Compose</span><span class="tag">Nginx</span><span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">AWS EC2</span><span class="tag">Multi-Stage Builds</span><span class="tag">Healthchecks</span><span class="tag">Named Volumes</span>
+      </div>
+    </div>
+    <div style="margin-top:2rem;">
+      <a href="https://medium.com/@ugochukwuafokwalam_6632" target="_blank" class="btn btn-gold">Read Full Article on Medium →</a>
+    </div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>

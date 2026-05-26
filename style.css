@@ -391,3 +391,110 @@ footer span { color: var(--gold); }
   .section { padding: 2.5rem 1.25rem; }
   .principles-grid, .projects-grid, .spiritual-grid, .contact-grid { grid-template-columns: 1fr; }
 }
+
+/* ── PROJECT DETAIL PAGES ── */
+.project-detail-hero {
+  background: var(--navy);
+  padding: 3rem 2rem;
+  border-bottom: 3px solid var(--gold);
+}
+.project-detail-hero h1 {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-bottom: 0.5rem;
+}
+.project-detail-hero p { color: #a8b8d8; font-size: 0.95rem; }
+.project-meta-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+}
+.project-meta-bar-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.meta-item { font-size: 0.82rem; color: var(--muted); }
+.meta-item strong { color: var(--navy); display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.15rem; }
+.detail-section { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+.detail-section + .detail-section { padding-top: 0; }
+.lesson-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.lesson-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+.lesson-card p { font-size: 0.875rem; color: var(--muted); }
+.arch-box {
+  background: #1e1e2e;
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: #a8d8a8;
+  margin: 1rem 0;
+  overflow-x: auto;
+  line-height: 1.7;
+}
+.problem-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.problem-card .problem-num {
+  display: inline-block;
+  background: #c0392b;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+}
+.problem-card .solution-num {
+  display: inline-block;
+  background: #27ae60;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+}
+.problem-card h4 { font-size: 0.9rem; color: var(--navy); margin-bottom: 0.3rem; }
+.problem-card p { font-size: 0.85rem; color: var(--muted); }
+.project-nav-btn {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--gold);
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+  touch-action: manipulation;
+}
+.project-nav-btn:hover { background: #1a3a6b; }
+.medium-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.medium-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.medium-card .read-time { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; }
+.medium-card h4 { font-size: 1rem; color: var(--navy); font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; line-height: 1.4; }
+.medium-card p { font-size: 0.85rem; color: var(--muted); }
+.medium-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }

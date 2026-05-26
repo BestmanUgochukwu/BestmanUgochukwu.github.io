@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3-Tier App on AWS with Terraform | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+        <div style="font-size:2rem;">🏗️</div>
+        <div>
+          <h1>Production-Grade 3-Tier App on AWS Using Terraform &amp; AI</h1>
+          <p>42 AWS resources. One command. A real production architecture built from scratch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>AWS</div>
+      <div class="meta-item"><strong>IaC Tool</strong>Terraform</div>
+      <div class="meta-item"><strong>Stack</strong>Next.js · Node.js · MySQL RDS · ALB · Nginx</div>
+      <div class="meta-item"><strong>Resources Deployed</strong>42 AWS Resources</div>
+      <div class="meta-item"><strong>Read on Medium</strong><a href="https://medium.com/@ugochukwuafokwalam_6632" target="_blank" style="color:var(--gold);">View Article →</a></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Architecture</p>
+    <h2 class="section-title">3-Tier <span>Design</span></h2>
+    <div class="divider"></div>
+    <div class="arch-box">
+Internet
+    ↓
+Public Application Load Balancer
+    ↓
+WEB TIER (Public Subnets — AZ1: 10.0.1.0/24, AZ2: 10.0.2.0/24)
+  Next.js frontend served via Nginx
+    ↓
+Internal Application Load Balancer
+    ↓
+APP TIER (Private Subnets — AZ1: 10.0.3.0/24, AZ2: 10.0.4.0/24)
+  Node.js REST API on port 3001
+    ↓
+DATABASE TIER (Private Subnets — AZ1: 10.0.5.0/24, AZ2: 10.0.6.0/24)
+  RDS MySQL 8.0 Multi-AZ + Read Replica
+
+Security Groups: Each tier only accepts traffic from the tier DIRECTLY above it.
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1.5rem;">
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:700;color:var(--navy);">42</div><div style="font-size:0.78rem;color:var(--muted);">AWS Resources</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:700;color:var(--navy);">6</div><div style="font-size:0.78rem;color:var(--muted);">Subnets across 2 AZs</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:700;color:var(--navy);">Multi-AZ</div><div style="font-size:0.78rem;color:var(--muted);">RDS + Read Replica</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:700;color:var(--navy);">15 min</div><div style="font-size:0.78rem;color:var(--muted);">Full deploy time</div></div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="section-label">Real Problems</p>
+      <h2 class="section-title">What Broke &amp; <span>How I Fixed It</span></h2>
+      <div class="divider"></div>
+      <div class="problem-card"><span class="problem-num">PROBLEM 1</span><h4>The # symbol that broke everything</h4><p>RDS password was BookReview#2024! — the # is treated as a comment start by dotenv. Backend was connecting as "BookReview" only. Fix: removed special characters from the password entirely.</p></div>
+      <div class="problem-card"><span class="problem-num">PROBLEM 2</span><h4>Node.js 12 on Ubuntu 22.04 — build crashed immediately</h4><p>Ubuntu 22.04 ships Node.js 12. The app needed Node.js 18. Fix: removed default Node, installed v18 via NodeSource setup script.</p></div>
+      <div class="problem-card"><span class="problem-num">PROBLEM 3</span><h4>Claude Code ran out of credits mid-deployment</h4><p>Backend half configured, frontend half built. This forced me to finish manually — proving I actually understood what the AI was doing, not just watching it run. Lesson: always understand your tools, not just use them.</p></div>
+      <div class="problem-card"><span class="problem-num">PROBLEM 4</span><h4>Missing .env file — backend crashing silently</h4><p>PM2 was running but the app kept failing. No .env file existed on the app instances. Fix: SSH'd into each instance and created the .env file manually with the correct RDS endpoint and credentials.</p></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Key Skills</p>
+    <h2 class="section-title">What I <span>Learned</span></h2>
+    <div class="divider"></div>
+    <div class="lesson-card"><h4>Infrastructure as Code Changes Everything</h4><p>terraform destroy deleted all 42 resources in 8 minutes. terraform apply rebuilt them in 15. Create and destroy entire production environments on demand — that is the superpower of IaC.</p></div>
+    <div class="lesson-card"><h4>AI Amplifies Engineers — It Doesn't Replace Them</h4><p>Claude Code generated 400+ lines of Terraform in minutes. But when it ran out of credits I had to finish manually. Engineers who win with AI understand what it is doing, not just that it is doing it.</p></div>
+    <div class="lesson-card"><h4>Special Characters in Passwords Break dotenv</h4><p>#, @, ! can all break dotenv parsing. Always test .env files and verify database connections before deploying the full app stack.</p></div>
+    <div class="lesson-card"><h4>Design Architecture Before Writing Code</h4><p>The architecture diagram saved hours. Knowing exactly what connects to what before writing Terraform means fewer surprises mid-deployment and cleaner security group design.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags"><span class="tag">Terraform</span><span class="tag">AWS VPC</span><span class="tag">ALB</span><span class="tag">RDS Multi-AZ</span><span class="tag">Next.js</span><span class="tag">Node.js</span><span class="tag">Nginx</span><span class="tag">Infrastructure as Code</span><span class="tag">Claude Code</span></div>
+    </div>
+    <div style="margin-top:2rem;"><a href="https://medium.com/@ugochukwuafokwalam_6632" target="_blank" class="btn btn-gold">Read Full Article on Medium →</a></div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>

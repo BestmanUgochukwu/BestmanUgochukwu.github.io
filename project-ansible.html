@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ansible + Terraform Cloud Deployment | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div style="font-size:2rem;">🤖</div>
+        <div>
+          <h1>From Zero to Cloud: Ansible + Terraform Multi-Server Automation</h1>
+          <p>5 assignments. 4 cloud VMs. Idempotent deployments. Production-grade Ansible Roles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>AWS (switched from Azure due to quota limits)</div>
+      <div class="meta-item"><strong>Tools</strong>Ansible · Terraform · Nginx · Jinja2 · Python venv</div>
+      <div class="meta-item"><strong>Key Concept</strong>Idempotent Infrastructure Automation</div>
+      <div class="meta-item"><strong>Read on Medium</strong><a href="https://medium.com/@ugochukwuafokwalam_6632" target="_blank" style="color:var(--gold);">View Article →</a></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">The Moment Everything Clicked</p>
+    <h2 class="section-title">What <span>Automation Feels Like</span></h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);margin-bottom:1.5rem;">I had 4 servers running on AWS. I typed one command:</p>
+    <div class="arch-box">ansible all -i inventory.ini -m ping
+→ All 4 servers responded. Simultaneously. In seconds.
+
+ansible web -i inventory.ini -m apt -a "name=nginx state=present" --become
+→ Nginx installed itself on 2 servers at the same time.
+→ Without touching either server. Without clicking anything.
+
+That feeling — watching automation work for the first time — is something
+no tutorial can fully prepare you for.</div>
+
+    <div style="margin-top:2rem;">
+      <p class="section-label">5 Assignments Built</p>
+      <div style="display:grid;gap:0.75rem;">
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;">
+          <span style="background:var(--navy);color:var(--gold);font-weight:700;padding:0.3rem 0.7rem;border-radius:4px;font-size:0.85rem;height:fit-content;">A1</span>
+          <div><strong style="color:var(--navy);">Professional Ansible Workstation</strong> — Python venv, VS Code, SSH keys, Git hooks, pre-commit validation, ansible.cfg</div>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;">
+          <span style="background:var(--navy);color:var(--gold);font-weight:700;padding:0.3rem 0.7rem;border-radius:4px;font-size:0.85rem;height:fit-content;">A2</span>
+          <div><strong style="color:var(--navy);">4 Cloud VMs with Terraform + Fleet Commands</strong> — provisioned 4 AWS VMs, configured passwordless SSH, ran fleet-wide ad-hoc commands across web/app/db groups</div>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;">
+          <span style="background:var(--navy);color:var(--gold);font-weight:700;padding:0.3rem 0.7rem;border-radius:4px;font-size:0.85rem;height:fit-content;">A3</span>
+          <div><strong style="color:var(--navy);">Multi-Play Ansible Playbook</strong> — installed Nginx, deployed static website using copy module, verified HTTP 200 automatically</div>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;">
+          <span style="background:var(--navy);color:var(--gold);font-weight:700;padding:0.3rem 0.7rem;border-radius:4px;font-size:0.85rem;height:fit-content;">A4</span>
+          <div><strong style="color:var(--navy);">Terraform + Ansible Combined</strong> — spun up infrastructure with Terraform, deployed Mini Finance website with Ansible, verified end-to-end in browser</div>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;">
+          <span style="background:var(--navy);color:var(--gold);font-weight:700;padding:0.3rem 0.7rem;border-radius:4px;font-size:0.85rem;height:fit-content;">A5</span>
+          <div><strong style="color:var(--navy);">Production-Grade Ansible Roles</strong> — roles/common, roles/nginx (Jinja2 templates), roles/epicbook deployment, idempotent runs, group variables</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="section-label">Key Lessons</p>
+      <h2 class="section-title">What I <span>Learned</span></h2>
+      <div class="divider"></div>
+      <div class="lesson-card"><h4>Automation Is Not Laziness — It Is Reliability at Scale</h4><p>One command configuring 4 servers identically is not cutting corners. It is the elimination of human error at the moment most likely to introduce it.</p></div>
+      <div class="lesson-card"><h4>Idempotency Is the Gold Standard</h4><p>When I ran the playbook a second time, almost everything showed "ok" instead of "changed." That means the system only changes what needs to change — exactly how production deployments must work.</p></div>
+      <div class="lesson-card"><h4>Clean Structure Is Non-Negotiable in Production</h4><p>Splitting responsibilities into roles (common, nginx, epicbook) with their own tasks, handlers, and templates is the difference between a script and a system.</p></div>
+      <div class="lesson-card"><h4>Azure Quota Limits Are a Real-World Problem</h4><p>Azure blocked 4 VMs due to public IP limits. Instead of stopping, I switched to AWS. Real engineers adapt when tools fail.</p></div>
+      <div style="margin-top:1.5rem;">
+        <div class="tags"><span class="tag">Ansible</span><span class="tag">Terraform</span><span class="tag">AWS</span><span class="tag">Nginx</span><span class="tag">Jinja2</span><span class="tag">Python venv</span><span class="tag">SSH</span><span class="tag">Idempotency</span><span class="tag">Ansible Roles</span></div>
+      </div>
+      <div style="margin-top:2rem;"><a href="https://medium.com/@ugochukwuafokwalam_6632" target="_blank" class="btn btn-gold">Read Full Article on Medium →</a></div>
+    </div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>

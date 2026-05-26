@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Azure DevOps CI/CD Pipeline | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div style="font-size:2rem;">⚙️</div>
+        <div>
+          <h1>Production-Grade CI/CD System on Azure DevOps — From Zero to Deployment</h1>
+          <p>Four assignments. Self-hosted agents. Terraform IaC. Multi-stage pipelines. End-to-end automation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>Microsoft Azure</div>
+      <div class="meta-item"><strong>Tools</strong>Azure DevOps · Terraform · SSH · Nginx · MySQL</div>
+      <div class="meta-item"><strong>Type</strong>CI/CD Pipeline · IaC</div>
+      <div class="meta-item"><strong>Read on Medium</strong><a href="https://medium.com/@ugochukwuafokwalam_6632" target="_blank" style="color:var(--gold);">View Article →</a></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">What I Built — 4 Assignments</p>
+    <h2 class="section-title">The Full <span>Pipeline</span></h2>
+    <div class="divider"></div>
+    <div style="display:grid;gap:1rem;margin-bottom:2rem;">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+        <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1.1rem;padding:0.5rem 0.9rem;border-radius:4px;">1</div>
+        <div><h4 style="color:var(--navy);margin-bottom:0.3rem;">Self-Hosted Azure DevOps Agent</h4><p style="color:var(--muted);font-size:0.875rem;">Registered an Ubuntu VM as a self-hosted build agent with Azure DevOps. Debugged SSH key mismatches, wrong usernames, changed download URLs, and PAT token scope issues. When it finally showed Online — I understood that infrastructure is never just configuration. It is problem solving.</p></div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+        <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1.1rem;padding:0.5rem 0.9rem;border-radius:4px;">2</div>
+        <div><h4 style="color:var(--navy);margin-bottom:0.3rem;">Automated Static Site Deployment via SSH</h4><p style="color:var(--muted);font-size:0.875rem;">Pipeline: Git commit → Azure DevOps → CopyFilesOverSSH → Ubuntu VM → Nginx → Browser. Discovered that Ubuntu cloud images disable password auth through override files in /etc/ssh/sshd_config.d/ — even when the main config allows it. Key lesson: always check override config files, not just the main config.</p></div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+        <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1.1rem;padding:0.5rem 0.9rem;border-radius:4px;">3</div>
+        <div><h4 style="color:var(--navy);margin-bottom:0.3rem;">Multi-Stage React App Pipeline</h4><p style="color:var(--muted);font-size:0.875rem;">Three stages: Build (npm install + npm run build), Test (npm test), Deploy (CopyFilesOverSSH to /var/www/html). You never deploy source code. You deploy artifacts. Every commit to main automatically builds, tests, and deploys the React app — zero manual intervention.</p></div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+        <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1.1rem;padding:0.5rem 0.9rem;border-radius:4px;">4</div>
+        <div><h4 style="color:var(--navy);margin-bottom:0.3rem;">Production IaC — Terraform + App Pipeline</h4><p style="color:var(--muted);font-size:0.875rem;">Two-repo model: infra-epicbook/ (Terraform) and theepicbook/ (Application). Terraform created the Resource Group, VNet, Subnet, NSG, Public IP, NIC, and Ubuntu VM automatically. App pipeline then deployed Node.js, MySQL, Nginx, and started the app as a systemd service.</p></div>
+      </div>
+    </div>
+
+    <div class="lesson-card"><h4>The Two-Repository Model</h4><p>Infrastructure code and application code change at different rates. A network config might change once a month. App code might change ten times a day. Separating them allows different teams to deploy at different cadences — standard enterprise DevOps practice.</p></div>
+    <div class="lesson-card"><h4>Service Principals Are the Backbone of Automation</h4><p>Azure AD app registrations, client secrets, and role assignments working together. Azure's permission model has multiple layers — subscription roles, ABAC conditions, and directory permissions can all independently block you.</p></div>
+    <div class="lesson-card"><h4>Errors Are the Curriculum</h4><p>Every failed pipeline run taught something specific. Permission errors taught Azure's security model. Connection errors taught networking. Deprecated package warnings taught dependency management.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags"><span class="tag">Azure DevOps</span><span class="tag">Terraform</span><span class="tag">CI/CD</span><span class="tag">YAML Pipelines</span><span class="tag">SSH</span><span class="tag">Nginx</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">systemd</span></div>
+    </div>
+    <div style="margin-top:2rem;"><a href="https://medium.com/@ugochukwuafokwalam_6632" target="_blank" class="btn btn-gold">Read Full Article on Medium →</a></div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>
