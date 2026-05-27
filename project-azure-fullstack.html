@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EpicBook + 3-Tier App on Azure | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+        <div style="font-size:2rem;">🔵</div>
+        <div>
+          <h1>EpicBook + 3-Tier Book Review App on Azure</h1>
+          <p>Two complete full-stack Azure deployments — private MySQL, Load Balancers, NAT Gateway, and the Jump Host pattern</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>Microsoft Azure</div>
+      <div class="meta-item"><strong>Tools</strong>Azure VNet · MySQL Flexible Server · ALB · NAT Gateway · Nginx · PM2</div>
+      <div class="meta-item"><strong>Stack</strong>Node.js · Next.js 15 · MySQL · Express</div>
+      <div class="meta-item"><strong>Read on Medium</strong><a href="https://medium.com/@ugochukwuafokwalam_6632/from-zero-to-cloud-how-i-deployed-two-full-stack-applications-on-azure-as-a-complete-beginner-6abe606a9c5d" target="_blank" style="color:var(--gold);">View Article →</a></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Project 1 — EpicBook</p>
+    <h2 class="section-title">EpicBook on Azure VM <span>with Private MySQL</span></h2>
+    <div class="divider"></div>
+    <div class="arch-box">
+Internet
+    ↓ Public IP (Static)
+Nginx (Port 80) — Reverse Proxy
+    ↓
+Node.js/Express App (Port 8080)
+    ↓
+Azure Database for MySQL Flexible Server (Port 3306)
+  — Private Access only (VNet Integration)
+  — No public internet access to database
+  — 54 books imported from seed files
+
+Network: VNet 10.0.0.0/16
+  Public Subnet 10.0.1.0/24  — VM lives here
+  Private Subnet 10.0.2.0/24 — MySQL lives here (no public access)
+
+NSGs:
+  Public NSG:  Allow HTTP (80) + SSH (22)
+  Private NSG: Allow MySQL (3306) ONLY from 10.0.1.0/24
+    </div>
+    <div style="margin-top:1.5rem;display:grid;gap:0.75rem;">
+      <div class="problem-card"><span class="problem-num">CHALLENGE</span><h4>SSH Key Permission Issue on Windows</h4><p>Running chmod on a .pem file in the Downloads folder failed on Windows. Fix: copy the key to the home directory (~/) first, then chmod 400 — Windows blocks permission changes in system folders.</p></div>
+      <div class="problem-card"><span class="solution-num">KEY LEARNING</span><h4>Private Subnets + NSGs = Database Security</h4><p>The private NSG only allows MySQL traffic from the VM subnet (10.0.1.0/24). Nobody on the internet can reach the database directly. Network segmentation is the first principle of cloud security.</p></div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="section-label">Project 2 — 3-Tier Book Review App</p>
+      <h2 class="section-title">3-Tier App with Load Balancers <span>&amp; NAT Gateway</span></h2>
+      <div class="divider"></div>
+      <div class="arch-box">
+Internet
+    ↓
+Public Load Balancer (web-public-lb) — Static Public IP
+    ↓
+Web VM — Next.js 15 + Nginx (Public Subnet 10.0.1.0/24)
+    ↓ (via Nginx proxy_pass to private IP)
+Internal Load Balancer (app-internal-lb) — Private IP: 10.0.3.10
+    ↓
+App VM — Node.js/Express (Private Subnet 10.0.3.0/24)
+  — NO public IP
+  — Only reachable via Web VM / Load Balancer
+    ↓
+Azure MySQL Flexible Server (Private Subnet 10.0.5.0/24)
+  — SSL required for all connections
+
+6 subnets: web×2, app×2, db×2 (across 2 availability zones)
+NAT Gateway: allows app VM to download packages without public IP
+Jump Host: SSH via Web VM → then SSH to App VM (10.0.3.4)
+      </div>
+      <div style="margin-top:1.5rem;display:grid;gap:0.75rem;">
+        <div class="problem-card"><span class="problem-num">CHALLENGE</span><h4>Private VM cannot install packages — no internet access</h4><p>App VM in private subnet cannot reach the internet to run apt install. Solution: added a NAT Gateway to the app subnets. NAT allows outbound traffic to the internet while keeping the subnet completely inaccessible from inbound internet connections.</p></div>
+        <div class="problem-card"><span class="problem-num">CHALLENGE</span><h4>Browser cannot reach private IP 10.0.3.4 directly</h4><p>The app runs on a private IP. Users cannot access it from their browser. Solution: Nginx on the Web VM acts as middleman — browser calls /api/books, Nginx forwards it to 10.0.3.4:3001, gets the response, returns it. The browser never knows the private IP exists.</p></div>
+        <div class="problem-card"><span class="solution-num">KEY LEARNING</span><h4>Always use PM2 startup on every deployment</h4><p>Without pm2 startup and pm2 save, your app dies when the VM reboots. This is non-negotiable in production — verified on every deployment.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Lessons Learned</p>
+    <h2 class="section-title">What I <span>Took Away</span></h2>
+    <div class="divider"></div>
+    <div class="lesson-card"><h4>Build Network First, Always</h4><p>Every Azure resource needs a network. Plan VNet and subnets before touching anything else. Retrofitting network architecture after deployment is painful and error-prone.</p></div>
+    <div class="lesson-card"><h4>Private Subnets Need NAT Gateways</h4><p>Private means no inbound internet — but it also means no outbound internet by default. If you need to install packages or pull from GitHub on a private subnet, add a NAT Gateway first.</p></div>
+    <div class="lesson-card"><h4>The Jump Host Pattern is Standard</h4><p>Never give backend VMs a public IP. Always access them through a Web VM or dedicated Bastion host. This is industry-standard practice in production cloud environments.</p></div>
+    <div class="lesson-card"><h4>Always Use SSL for Managed Databases</h4><p>Azure MySQL requires SSL. Always include dialectOptions.ssl in your Sequelize config. Forgetting this means silent connection failures that are difficult to debug.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags"><span class="tag">Azure VNet</span><span class="tag">MySQL Flexible Server</span><span class="tag">Load Balancer</span><span class="tag">NAT Gateway</span><span class="tag">Nginx</span><span class="tag">Node.js</span><span class="tag">Next.js</span><span class="tag">PM2</span><span class="tag">Jump Host</span></div>
+    </div>
+    <div style="margin-top:2rem;"><a href="https://medium.com/@ugochukwuafokwalam_6632/from-zero-to-cloud-how-i-deployed-two-full-stack-applications-on-azure-as-a-complete-beginner-6abe606a9c5d" target="_blank" class="btn btn-gold">Read Full Article on Medium →</a></div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>

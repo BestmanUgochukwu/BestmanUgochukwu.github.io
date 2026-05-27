@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MoodTunes on GKE | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+        <div style="font-size:2rem;">🎵</div>
+        <div>
+          <h1>MoodTunes React App on Google Kubernetes Engine</h1>
+          <p>GKE · NGINX Ingress Controller · Let's Encrypt HTTPS · Google Container Registry · Cloud Build</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>Google Cloud Platform</div>
+      <div class="meta-item"><strong>Tools</strong>GKE · GCR · Cloud Build · NGINX Ingress · Cert-Manager</div>
+      <div class="meta-item"><strong>Stack</strong>React · Kubernetes · Let's Encrypt</div>
+      <div class="meta-item"><strong>Internship</strong>The CloudAdvisory Oy — Cohort 2</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Architecture</p>
+    <h2 class="section-title">What I <span>Built</span></h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);margin-bottom:1.5rem;">Built and deployed the MoodTunes React web application on Google Kubernetes Engine — a fully managed Kubernetes service on GCP. The deployment includes automatic HTTPS via Let's Encrypt, NGINX Ingress for traffic routing, automated container builds with Cloud Build, and image storage in Google Container Registry.</p>
+
+    <div class="arch-box">
+User Browser
+    ↓ HTTPS (port 443) — Let's Encrypt TLS Certificate
+NGINX Ingress Controller
+  — Routes external traffic to internal Kubernetes services
+  — Handles TLS termination
+  — HTTP → HTTPS redirect enforced
+    ↓
+Kubernetes Service (ClusterIP)
+    ↓
+MoodTunes React Pods (Deployment)
+  — Containerized React application
+  — Image pulled from Google Container Registry (GCR)
+
+Build Pipeline:
+  GitHub Push → Cloud Build trigger → Docker build →
+  Push to GCR → kubectl rollout update
+
+GKE Cluster: Google-managed control plane
+Node Pool: Auto-managed worker nodes
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1.5rem;">
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">HTTPS</div><div style="font-size:0.78rem;color:var(--muted);">Auto Let's Encrypt TLS</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">GCR</div><div style="font-size:0.78rem;color:var(--muted);">Private Container Registry</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">Auto</div><div style="font-size:0.78rem;color:var(--muted);">Cloud Build CI Pipeline</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">GKE</div><div style="font-size:0.78rem;color:var(--muted);">Managed Kubernetes</div></div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="section-label">Key Components Explained</p>
+      <h2 class="section-title">Technical <span>Breakdown</span></h2>
+      <div class="divider"></div>
+      <div style="display:grid;gap:1rem;">
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Google Kubernetes Engine (GKE)</h4>
+          <p style="color:var(--muted);font-size:0.875rem;">GKE manages the Kubernetes control plane automatically — no manual etcd management, no API server maintenance. The cluster auto-upgrades and scales worker nodes based on workload demand. This is production-grade Kubernetes without the operational overhead of self-managed clusters.</p>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+          <h4 style="color:var(--navy);margin-bottom:0.4rem;">NGINX Ingress Controller</h4>
+          <p style="color:var(--muted);font-size:0.875rem;">Instead of exposing each service directly to the internet, NGINX Ingress acts as a single entry point for all traffic. It routes requests to the correct backend service based on hostname/path rules, handles SSL termination, and enforces HTTP-to-HTTPS redirects — all from one controller.</p>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Let's Encrypt with cert-manager</h4>
+          <p style="color:var(--muted);font-size:0.875rem;">Deployed cert-manager inside the cluster to automatically provision and renew TLS certificates from Let's Encrypt. Certificates are stored as Kubernetes Secrets and mounted by the Ingress controller — HTTPS is automatic and maintenance-free.</p>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Google Container Registry (GCR) + Cloud Build</h4>
+          <p style="color:var(--muted);font-size:0.875rem;">Every code push triggers a Cloud Build pipeline that builds the Docker image and pushes it to GCR — Google's private container registry. The Kubernetes Deployment then pulls the new image from GCR during rollouts, ensuring the cluster always uses authenticated, controlled images.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Lessons Learned</p>
+    <h2 class="section-title">What I <span>Took Away</span></h2>
+    <div class="divider"></div>
+    <div class="lesson-card"><h4>Kubernetes Orchestrates So You Don't Have To</h4><p>Kubernetes handles pod restarts, rolling updates, health checks, and traffic routing automatically. The cluster breathes — expanding when stressed, contracting when calm — without manual intervention.</p></div>
+    <div class="lesson-card"><h4>Ingress Is the Right Pattern for Production</h4><p>Exposing individual services via LoadBalancer type creates one cloud load balancer per service — expensive and unmanageable at scale. NGINX Ingress consolidates all external traffic through one entry point with path-based routing.</p></div>
+    <div class="lesson-card"><h4>Automate Certificate Management</h4><p>Manual TLS certificate management is a reliability risk — expired certificates take down HTTPS silently. cert-manager with Let's Encrypt automates renewal well before expiry, eliminating this failure mode entirely.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags"><span class="tag">GKE</span><span class="tag">Kubernetes</span><span class="tag">React</span><span class="tag">NGINX Ingress</span><span class="tag">Let's Encrypt</span><span class="tag">GCR</span><span class="tag">Cloud Build</span><span class="tag">cert-manager</span><span class="tag">GCP</span></div>
+    </div>
+    <div class="quote-block" style="margin-top:2rem;">
+      ✦ Spiritual Reflection: Kubernetes orchestrates containers the way the Lord orchestrates our experiences — each pod assigned a purpose, each service connected to a greater whole.
+    </div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>

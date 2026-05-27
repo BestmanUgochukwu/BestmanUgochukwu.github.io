@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kubernetes Journey | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+        <div style="font-size:2rem;">⛵</div>
+        <div>
+          <h1>Kubernetes Journey: From Pods to Public LoadBalancers on AKS</h1>
+          <p>Pods → ReplicaSets → Deployments → HPA → Health Probes → Services → Public IP on Azure Kubernetes Service</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>Azure Kubernetes Service (AKS)</div>
+      <div class="meta-item"><strong>Tools</strong>kubectl · AKS · HPA · Metrics Server · Nginx</div>
+      <div class="meta-item"><strong>Type</strong>Container Orchestration Learning Journey</div>
+      <div class="meta-item"><strong>Read on Medium</strong><a href="https://medium.com/@ugochukwuafokwalam_6632/my-kubernetes-journey-from-pods-to-public-loadbalancers-3348f2d0a040" target="_blank" style="color:var(--gold);">View Article →</a></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">The Learning Path</p>
+    <h2 class="section-title">Every Stage of the <span>Journey</span></h2>
+    <div class="divider"></div>
+    <div style="display:grid;gap:1rem;">
+      <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;"><span style="font-size:1.2rem;">🌱</span><h4 style="color:var(--navy);margin:0;">Pods — The Atomic Unit</h4></div>
+        <p style="color:var(--muted);font-size:0.875rem;">Started with kubectl run nginx. It felt small — almost trivial. But pods taught me that every containerized application needs a home, and pods are that home. The smallest deployable unit in Kubernetes, containing one or more containers that share network and storage.</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;"><span style="font-size:1.2rem;">🔄</span><h4 style="color:var(--navy);margin:0;">ReplicaSets — Self-Healing in Action</h4></div>
+        <p style="color:var(--muted);font-size:0.875rem;">Deleted a pod just to see what would happen. Within seconds, Kubernetes recreated it. That moment was eye-opening — reliability is not just a feature, it is baked into the system. ReplicaSets maintain a desired number of pod replicas at all times.</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;"><span style="font-size:1.2rem;">📦</span><h4 style="color:var(--navy);margin:0;">Deployments — Controlled Evolution</h4></div>
+        <p style="color:var(--muted);font-size:0.875rem;">Changed the Nginx image version and watched Kubernetes gracefully replace old pods with new ones using rolling updates — zero downtime. Learned the hard way that using the wrong image tag leads to ImagePullBackOff. Debugging that taught patience and precision.</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;"><span style="font-size:1.2rem;">📈</span><h4 style="color:var(--navy);margin:0;">Horizontal Pod Autoscaler (HPA)</h4></div>
+        <p style="color:var(--muted);font-size:0.875rem;">Generated artificial CPU load and watched pods multiply automatically. Then watched them scale back down when the load was removed. It was like watching a system breathe — expanding when stressed, contracting when calm. HPA uses the Metrics Server to monitor resource consumption and trigger scaling decisions.</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;"><span style="font-size:1.2rem;">❤️</span><h4 style="color:var(--navy);margin:0;">Health Probes — Readiness &amp; Liveness</h4></div>
+        <p style="color:var(--muted);font-size:0.875rem;">Adding readiness and liveness probes was a turning point. Liveness probes tell Kubernetes when to restart a failing container. Readiness probes tell Kubernetes when a container is ready to serve traffic. Together they ensure only healthy pods receive requests — this is how Kubernetes achieves reliability at scale.</p>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;"><span style="font-size:1.2rem;">🌐</span><h4 style="color:var(--navy);margin:0;">Services — Opening the Doors</h4></div>
+        <p style="color:var(--muted);font-size:0.875rem;"><strong>ClusterIP</strong> gave internal stability — pods could talk to each other using a stable IP. <strong>NodePort</strong> opened a door to the outside world through a static port on each node (though WSL2 networking had quirks). <strong>LoadBalancer on AKS</strong> was the breakthrough: Azure automatically provisioned a public IP address and routed internet traffic directly to my pods. That was the moment it felt like a real production system.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="section-label">Final Architecture</p>
+      <h2 class="section-title">What Was <span>Running on AKS</span></h2>
+      <div class="divider"></div>
+      <div class="arch-box">
+Internet
+    ↓ Public IP (provisioned automatically by AKS)
+Azure Load Balancer
+    ↓
+Kubernetes Service (type: LoadBalancer)
+    ↓
+Nginx Pods (Deployment — 3 replicas)
+  Pod 1 (Node A)
+  Pod 2 (Node B)
+  Pod 3 (Node A)
+
+HPA: min 2 pods, max 10 pods
+  — Scales when CPU > 50%
+  — Scales down when CPU drops
+
+Liveness Probe:  GET /healthz every 10s → restart if 3 failures
+Readiness Probe: GET /ready every 5s  → remove from LB if failing
+
+AKS: Azure-managed control plane
+  — Node auto-upgrade
+  — Automatic certificate rotation
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Key Insight</p>
+    <h2 class="section-title">The Most Important <span>Combination</span></h2>
+    <div class="divider"></div>
+    <div class="lesson-card"><h4>Health Probes + Service Types = Production Reliability</h4><p>The combination of health probes and service types is what transforms a Kubernetes cluster from a container runner into a production system. Health probes ensure only healthy pods serve traffic. LoadBalancer services ensure users reach those pods through a stable, internet-facing endpoint. Together they deliver reliability, scalability, and customer trust — the three pillars of production engineering.</p></div>
+    <div class="lesson-card"><h4>Kubernetes Is Not Just About Containers — It Is About Intentions</h4><p>You declare what you want (3 replicas, scale when CPU exceeds 50%, restart if health check fails) and Kubernetes makes it happen and keeps it true. The controller loops run continuously, comparing desired state to actual state and reconciling any difference. This is a fundamentally different model from imperative server management.</p></div>
+    <div class="lesson-card"><h4>Managed Kubernetes (AKS) vs Self-Managed</h4><p>AKS manages the control plane — etcd, API server, scheduler, controller manager — so I focus on workloads, not infrastructure. In a self-managed cluster, a control plane failure is a crisis. In AKS, it is Azure's problem to solve. For a practitioner learning Kubernetes, managed services remove the operational overhead that would otherwise dominate learning time.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags"><span class="tag">Kubernetes</span><span class="tag">AKS</span><span class="tag">kubectl</span><span class="tag">HPA</span><span class="tag">Health Probes</span><span class="tag">LoadBalancer</span><span class="tag">ClusterIP</span><span class="tag">NodePort</span><span class="tag">Azure</span></div>
+    </div>
+    <div style="margin-top:2rem;"><a href="https://medium.com/@ugochukwuafokwalam_6632/my-kubernetes-journey-from-pods-to-public-loadbalancers-3348f2d0a040" target="_blank" class="btn btn-gold">Read Full Article on Medium →</a></div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>

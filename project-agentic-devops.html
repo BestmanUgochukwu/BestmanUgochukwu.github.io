@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agentic DevOps with Claude Code | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+        <div style="font-size:2rem;">🤖</div>
+        <div>
+          <h1>Agentic DevOps Pipeline with Claude Code</h1>
+          <p>5-layer AI-powered infrastructure system — CLAUDE.md · Skills · Subagents · MCP · Safety Hooks</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>AWS S3 + CloudFront</div>
+      <div class="meta-item"><strong>AI Tool</strong>Claude Code (Agentic)</div>
+      <div class="meta-item"><strong>IaC</strong>Terraform</div>
+      <div class="meta-item"><strong>Course</strong>Ultimate Agentic DevOps — Pravin Mishra</div>
+      <div class="meta-item"><strong>Read on Medium</strong><a href="https://medium.com/@ugochukwuafokwalam_6632/i-let-ai-run-my-aws-infrastructure-here-is-what-happened-adea5a527861" target="_blank" style="color:var(--gold);">View Article →</a></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title">What I <span>Built</span></h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);margin-bottom:1.5rem;">A fully automated, safety-guarded, auditable DevOps pipeline using Claude Code as an AI copilot. The system deploys a static portfolio website to AWS S3 with CloudFront CDN — but what makes it remarkable is not the destination, it is the five-layer agentic architecture that makes every action consistent, safe, and auditable.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem;">
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">5</div><div style="font-size:0.78rem;color:var(--muted);">Architecture Layers</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">4</div><div style="font-size:0.78rem;color:var(--muted);">Slash Command Skills</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">3</div><div style="font-size:0.78rem;color:var(--muted);">Safety Hooks</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">0</div><div style="font-size:0.78rem;color:var(--muted);">Manual Terraform Commands</div></div>
+    </div>
+
+    <div style="display:grid;gap:1.25rem;">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+        <div style="background:var(--navy);padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;">
+          <span style="background:rgba(201,168,76,0.2);color:var(--gold);font-weight:700;font-size:0.8rem;padding:0.2rem 0.6rem;border-radius:3px;">LAYER 1</span>
+          <span style="color:white;font-weight:500;">CLAUDE.md — Giving the Agent a Memory</span>
+        </div>
+        <div style="padding:1.25rem;"><p style="color:var(--muted);font-size:0.875rem;">A markdown file in the project root that Claude Code reads before doing anything. It contains the project overview, architecture, folder structure, and conventions — including a rule that prohibits JavaScript frameworks. When I asked Claude to add a React component, it refused — not because it could not write React, but because CLAUDE.md said no. That was the first moment I realized I was not just using a tool. I was building a team member.</p></div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+        <div style="background:var(--navy);padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;">
+          <span style="background:rgba(201,168,76,0.2);color:var(--gold);font-weight:700;font-size:0.8rem;padding:0.2rem 0.6rem;border-radius:3px;">LAYER 2</span>
+          <span style="color:white;font-weight:500;">Skills — Turning Long Prompts Into One Command</span>
+        </div>
+        <div style="padding:1.25rem;"><p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.75rem;">Skills are markdown files with a defined playbook the agent follows every time. I built four: <strong>/scaffold-terraform</strong> (generates all Terraform files from scratch), <strong>/tf-plan</strong> (runs plan with correct flags, counts resources, flags high-risk changes — cannot edit files), <strong>/tf-apply</strong> (provisions S3, CloudFront, bucket policies), and <strong>/deploy</strong> (syncs files to S3 and invalidates CloudFront cache). One command. Two AWS operations. Zero manual steps.</p></div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+        <div style="background:var(--navy);padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;">
+          <span style="background:rgba(201,168,76,0.2);color:var(--gold);font-weight:700;font-size:0.8rem;padding:0.2rem 0.6rem;border-radius:3px;">LAYER 3</span>
+          <span style="color:white;font-weight:500;">Subagents — Isolated Specialists With One Job</span>
+        </div>
+        <div style="padding:1.25rem;"><p style="color:var(--muted);font-size:0.875rem;">Three subagents, each running in completely isolated context. The <strong>security-auditor</strong> reads Terraform files and checks against security rules — it cannot write anything. It found 13 security issues including a CRITICAL one: my terraform.tfstate file sat in the project directory with my real AWS account ID and CloudFront distribution IDs. Bots scan GitHub for this within minutes. The <strong>tf-writer</strong> fixes Terraform files using live MCP documentation. The audit-fix-verify loop runs in minutes on any project.</p></div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+        <div style="background:var(--navy);padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;">
+          <span style="background:rgba(201,168,76,0.2);color:var(--gold);font-weight:700;font-size:0.8rem;padding:0.2rem 0.6rem;border-radius:3px;">LAYER 4</span>
+          <span style="color:white;font-weight:500;">MCP — Live Connection to the World</span>
+        </div>
+        <div style="padding:1.25rem;"><p style="color:var(--muted);font-size:0.875rem;">AI models are trained up to a date then frozen. New Terraform provider versions are released. AWS adds new services. Without MCP, the agent generates Terraform from stale training memory — deprecated arguments, missing required fields. With the Terraform MCP server, the agent reads the actual current provider documentation for every resource it writes. With the AWS MCP server, it queries your live account rather than assuming. Training data tells you what was true. MCP tells you what is true.</p></div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+        <div style="background:var(--navy);padding:0.9rem 1.25rem;display:flex;align-items:center;gap:0.75rem;">
+          <span style="background:rgba(201,168,76,0.2);color:var(--gold);font-weight:700;font-size:0.8rem;padding:0.2rem 0.6rem;border-radius:3px;">LAYER 5</span>
+          <span style="color:white;font-weight:500;">Hooks — Safety That Cannot Be Bypassed</span>
+        </div>
+        <div style="padding:1.25rem;"><p style="color:var(--muted);font-size:0.875rem;">Three shell scripts outside the AI entirely — the agent cannot read, modify, or override them. <strong>user-prompt-guard.sh</strong> fires at prompt submission and blocks dangerous words (Delete all, terraform destroy, DROP TABLE). <strong>pre-tool-guard.sh</strong> fires before every bash command and blocks dangerous executions with exit code 2. <strong>post-tool-logger.sh</strong> logs every command with timestamp to an audit trail. SAY guards intent. DO guards execution. LOG makes everything auditable. You need all three — intent and execution are two different things.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Lessons Learned</p>
+    <h2 class="section-title">What I <span>Took Away</span></h2>
+    <div class="divider"></div>
+    <div class="lesson-card"><h4>AI Amplifies Engineers — It Does Not Replace Them</h4><p>Claude Code generated 400+ lines of Terraform in minutes. But when something unexpected happened, I had to understand and respond. The engineers who win with AI are the ones who understand what it is doing, not just that it is doing it.</p></div>
+    <div class="lesson-card"><h4>Security Audit Before You Push</h4><p>The subagent found my tfstate file with live AWS credentials before I pushed to GitHub. This is not a theoretical risk — bots actively scan public repositories for exposed credentials within minutes of a push. The audit-fix-verify loop is non-negotiable.</p></div>
+    <div class="lesson-card"><h4>Training Data vs Live Data</h4><p>For DevOps, the difference between what was true (training data) and what is true (MCP live data) is the difference between working Terraform and a deployment that fails on the first plan.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags"><span class="tag">Claude Code</span><span class="tag">MCP</span><span class="tag">Terraform</span><span class="tag">AWS S3</span><span class="tag">CloudFront</span><span class="tag">Agentic AI</span><span class="tag">Security Audit</span><span class="tag">IaC</span></div>
+    </div>
+    <div style="margin-top:2rem;"><a href="https://medium.com/@ugochukwuafokwalam_6632/i-let-ai-run-my-aws-infrastructure-here-is-what-happened-adea5a527861" target="_blank" class="btn btn-gold">Read Full Article on Medium →</a></div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>

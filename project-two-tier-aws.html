@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Highly Available Two-Tier AWS App | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+        <div style="font-size:2rem;">☁️</div>
+        <div>
+          <h1>Highly Available Two-Tier Application on AWS</h1>
+          <p>VPC · Application Load Balancer · Auto Scaling Groups · Multi-AZ RDS — zero-downtime failover architecture</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Platform</strong>AWS</div>
+      <div class="meta-item"><strong>Tools</strong>VPC · ALB · ASG · EC2 · RDS Multi-AZ · IAM</div>
+      <div class="meta-item"><strong>Type</strong>High Availability Architecture</div>
+      <div class="meta-item"><strong>Internship</strong>The CloudAdvisory Oy — Cohort 2</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Architecture</p>
+    <h2 class="section-title">What I <span>Built</span></h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);margin-bottom:1.5rem;">A highly available two-tier application built on AWS following production best practices. The architecture ensures zero-downtime failover across availability zones by distributing load, scaling automatically, and replicating the database across multiple AZs.</p>
+    <div class="arch-box">
+Internet
+    ↓
+Application Load Balancer (ALB)
+  — Distributes traffic across multiple EC2 instances
+  — Health checks remove unhealthy instances automatically
+    ↓
+Auto Scaling Group (ASG) — Web/App Tier
+  AZ-1a: EC2 Instance           AZ-1b: EC2 Instance
+  Private Subnet 10.0.1.0/24   Private Subnet 10.0.2.0/24
+    ↓
+RDS MySQL — Multi-AZ
+  Primary DB (AZ-1a)  ←sync→  Standby DB (AZ-1b)
+  — Automatic failover if primary goes down
+  — No manual intervention required
+
+VPC: Custom — 10.0.0.0/16
+Security Groups: Least-privilege per tier
+IAM Roles: EC2 instance profiles scoped to required permissions only
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1.5rem;">
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;">
+        <div style="font-size:1.4rem;font-weight:700;color:var(--navy);">Multi-AZ</div>
+        <div style="font-size:0.78rem;color:var(--muted);">RDS Failover</div>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;">
+        <div style="font-size:1.4rem;font-weight:700;color:var(--navy);">Auto</div>
+        <div style="font-size:0.78rem;color:var(--muted);">Scaling on Demand</div>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;">
+        <div style="font-size:1.4rem;font-weight:700;color:var(--navy);">0</div>
+        <div style="font-size:0.78rem;color:var(--muted);">Single Points of Failure</div>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;">
+        <div style="font-size:1.4rem;font-weight:700;color:var(--navy);">PoLP</div>
+        <div style="font-size:0.78rem;color:var(--muted);">Principle of Least Privilege</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="section-label">Key Components</p>
+      <h2 class="section-title">Technical <span>Deep Dive</span></h2>
+      <div class="divider"></div>
+
+      <div style="display:grid;gap:1rem;">
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Custom VPC Design</h4>
+          <p style="color:var(--muted);font-size:0.875rem;">Built a custom VPC (10.0.0.0/16) with public and private subnets across two availability zones. Public subnets host the load balancer; private subnets host EC2 instances and the database — following the principle that only what must be public should be public.</p>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Application Load Balancer (ALB)</h4>
+          <p style="color:var(--muted);font-size:0.875rem;">Configured ALB with target groups, health check paths, and listener rules. The ALB continuously checks instance health and automatically stops routing traffic to any instance that fails its health check — users never experience the failure.</p>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Auto Scaling Group (ASG)</h4>
+          <p style="color:var(--muted);font-size:0.875rem;">Defined scaling policies based on CPU utilization. When load increases, ASG launches new instances automatically. When load decreases, it terminates excess instances. The application scales to demand without human intervention.</p>
+        </div>
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
+          <h4 style="color:var(--navy);margin-bottom:0.4rem;">RDS Multi-AZ</h4>
+          <p style="color:var(--muted);font-size:0.875rem;">MySQL RDS with Multi-AZ enabled. AWS maintains a synchronous standby replica in a separate AZ. If the primary database fails, RDS automatically promotes the standby — typical failover time is 60–120 seconds with no application code changes required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Lessons Learned</p>
+    <h2 class="section-title">What I <span>Took Away</span></h2>
+    <div class="divider"></div>
+    <div class="lesson-card"><h4>High Availability Is Designed, Not Hoped For</h4><p>Single-instance deployments rely on hoping nothing fails. Multi-AZ, ALB, and ASG together mean the system continues working even when individual components fail — because failure was planned for from the start.</p></div>
+    <div class="lesson-card"><h4>Security Groups Are Your First Line of Defense</h4><p>Each tier's security group only allows traffic from the tier directly above it. The database security group only accepts connections from the application tier — never from the internet, never from the load balancer.</p></div>
+    <div class="lesson-card"><h4>IAM Least Privilege Applies to Instances Too</h4><p>EC2 instances accessed S3 and other AWS services through IAM instance profiles scoped to only the permissions required. No hardcoded credentials anywhere in the application.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags"><span class="tag">AWS VPC</span><span class="tag">ALB</span><span class="tag">Auto Scaling</span><span class="tag">RDS Multi-AZ</span><span class="tag">EC2</span><span class="tag">IAM</span><span class="tag">Security Groups</span><span class="tag">High Availability</span></div>
+    </div>
+    <div class="quote-block" style="margin-top:2rem;">
+      ✦ Spiritual Reflection: Building redundancy into architecture mirrors the principle of preparation. As D&C 58:27 says, be anxiously engaged — don't wait for the server to fail before planning for it.
+    </div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>
