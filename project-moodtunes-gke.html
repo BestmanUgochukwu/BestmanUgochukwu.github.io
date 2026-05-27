@@ -31,71 +31,281 @@
 
   <div class="project-meta-bar">
     <div class="project-meta-bar-inner">
-      <div class="meta-item"><strong>Platform</strong>Google Cloud Platform</div>
-      <div class="meta-item"><strong>Tools</strong>GKE · GCR · Cloud Build · NGINX Ingress · Cert-Manager</div>
-      <div class="meta-item"><strong>Stack</strong>React · Kubernetes · Let's Encrypt</div>
+      <div class="meta-item"><strong>Platform</strong>Google Cloud Platform (GCP)</div>
+      <div class="meta-item"><strong>Tools</strong>GKE · GCR · Cloud Build · NGINX Ingress · cert-manager</div>
+      <div class="meta-item"><strong>Stack</strong>React · Kubernetes · Docker · Let's Encrypt</div>
       <div class="meta-item"><strong>Internship</strong>The CloudAdvisory Oy — Cohort 2</div>
     </div>
   </div>
 
+  <!-- Architecture Overview -->
   <div class="detail-section">
     <p class="section-label">Architecture</p>
-    <h2 class="section-title">What I <span>Built</span></h2>
+    <h2 class="section-title">How It <span>Works</span></h2>
     <div class="divider"></div>
-    <p style="color:var(--muted);margin-bottom:1.5rem;">Built and deployed the MoodTunes React web application on Google Kubernetes Engine — a fully managed Kubernetes service on GCP. The deployment includes automatic HTTPS via Let's Encrypt, NGINX Ingress for traffic routing, automated container builds with Cloud Build, and image storage in Google Container Registry.</p>
-
     <div class="arch-box">
-User Browser
-    ↓ HTTPS (port 443) — Let's Encrypt TLS Certificate
+User Browser (HTTPS)
+    ↓ DNS resolves domain → GCP External IP
 NGINX Ingress Controller
-  — Routes external traffic to internal Kubernetes services
-  — Handles TLS termination
-  — HTTP → HTTPS redirect enforced
+  — Handles TLS termination (Let's Encrypt certificate)
+  — Enforces HTTP → HTTPS redirect
+  — Routes traffic to backend Kubernetes Service
     ↓
-Kubernetes Service (ClusterIP)
+Kubernetes Service (ClusterIP — internal only)
     ↓
-MoodTunes React Pods (Deployment)
-  — Containerized React application
+MoodTunes React Pods (Deployment — 2+ replicas)
+  — Containerized React build served via Nginx inside pod
   — Image pulled from Google Container Registry (GCR)
 
-Build Pipeline:
-  GitHub Push → Cloud Build trigger → Docker build →
-  Push to GCR → kubectl rollout update
+Automated Build Pipeline:
+  Developer pushes code to GitHub
+    → Cloud Build trigger fires
+    → Docker image built
+    → Image tagged and pushed to GCR
+    → kubectl rolling update applied to Deployment
+    → New pods replace old pods with zero downtime
 
-GKE Cluster: Google-managed control plane
-Node Pool: Auto-managed worker nodes
+cert-manager: automatically provisions and renews TLS certificates
+GKE: Google-managed control plane (no etcd to maintain)
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1.5rem;">
-      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">HTTPS</div><div style="font-size:0.78rem;color:var(--muted);">Auto Let's Encrypt TLS</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">HTTPS</div><div style="font-size:0.78rem;color:var(--muted);">Auto-renewed TLS</div></div>
       <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">GCR</div><div style="font-size:0.78rem;color:var(--muted);">Private Container Registry</div></div>
       <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">Auto</div><div style="font-size:0.78rem;color:var(--muted);">Cloud Build CI Pipeline</div></div>
-      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">GKE</div><div style="font-size:0.78rem;color:var(--muted);">Managed Kubernetes</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">0</div><div style="font-size:0.78rem;color:var(--muted);">Downtime on Update</div></div>
     </div>
   </div>
 
+  <!-- Step by Step Build Process -->
   <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
     <div style="max-width:1000px;margin:0 auto;">
-      <p class="section-label">Key Components Explained</p>
-      <h2 class="section-title">Technical <span>Breakdown</span></h2>
+      <p class="section-label">Exact Steps — How I Built This</p>
+      <h2 class="section-title">Complete <span>Build Process</span></h2>
       <div class="divider"></div>
       <div style="display:grid;gap:1rem;">
-        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
-          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Google Kubernetes Engine (GKE)</h4>
-          <p style="color:var(--muted);font-size:0.875rem;">GKE manages the Kubernetes control plane automatically — no manual etcd management, no API server maintenance. The cluster auto-upgrades and scales worker nodes based on workload demand. This is production-grade Kubernetes without the operational overhead of self-managed clusters.</p>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">1</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Set Up GCP Project and Enable APIs</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Created a new GCP project and enabled the required APIs: Kubernetes Engine API, Container Registry API, and Cloud Build API. Configured the gcloud CLI locally and authenticated with the project.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">gcloud config set project YOUR_PROJECT_ID
+gcloud services enable container.googleapis.com
+gcloud services enable containerregistry.googleapis.com
+gcloud services enable cloudbuild.googleapis.com</div>
+          </div>
         </div>
-        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
-          <h4 style="color:var(--navy);margin-bottom:0.4rem;">NGINX Ingress Controller</h4>
-          <p style="color:var(--muted);font-size:0.875rem;">Instead of exposing each service directly to the internet, NGINX Ingress acts as a single entry point for all traffic. It routes requests to the correct backend service based on hostname/path rules, handles SSL termination, and enforces HTTP-to-HTTPS redirects — all from one controller.</p>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">2</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Create the GKE Cluster</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Provisioned a GKE cluster with a managed node pool. Used a standard cluster with autoscaling enabled so nodes scale based on workload demand.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">gcloud container clusters create moodtunes-cluster \
+  --region us-central1 \
+  --num-nodes 2 \
+  --enable-autoscaling \
+  --min-nodes 1 \
+  --max-nodes 4
+
+# Connect kubectl to the cluster
+gcloud container clusters get-credentials moodtunes-cluster \
+  --region us-central1</div>
+          </div>
         </div>
-        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
-          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Let's Encrypt with cert-manager</h4>
-          <p style="color:var(--muted);font-size:0.875rem;">Deployed cert-manager inside the cluster to automatically provision and renew TLS certificates from Let's Encrypt. Certificates are stored as Kubernetes Secrets and mounted by the Ingress controller — HTTPS is automatic and maintenance-free.</p>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">3</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Containerize the React App with Docker</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Wrote a multi-stage Dockerfile — Stage 1 uses Node.js to build the React app, Stage 2 uses lightweight Nginx Alpine to serve only the compiled output. This reduced the image from ~1.2GB to under 100MB.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;"># Stage 1: Build
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Stage 2: Serve
+FROM nginx:alpine
+COPY --from=builder /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80</div>
+          </div>
         </div>
-        <div style="background:var(--accent-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:1.25rem;">
-          <h4 style="color:var(--navy);margin-bottom:0.4rem;">Google Container Registry (GCR) + Cloud Build</h4>
-          <p style="color:var(--muted);font-size:0.875rem;">Every code push triggers a Cloud Build pipeline that builds the Docker image and pushes it to GCR — Google's private container registry. The Kubernetes Deployment then pulls the new image from GCR during rollouts, ensuring the cluster always uses authenticated, controlled images.</p>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">4</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Build and Push Image to Google Container Registry</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Built the Docker image and pushed it to GCR — Google's private container registry. Using GCR means GKE can pull images without any external authentication setup.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">export PROJECT_ID=$(gcloud config get-value project)
+
+docker build -t gcr.io/$PROJECT_ID/moodtunes:v1 .
+docker push gcr.io/$PROJECT_ID/moodtunes:v1</div>
+          </div>
         </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">5</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Deploy to GKE with Kubernetes Manifests</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Created a Kubernetes Deployment manifest declaring 2 replicas, resource limits, and the GCR image. Applied it with kubectl. The cluster immediately pulled the image and started running pods.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moodtunes
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: moodtunes
+  template:
+    metadata:
+      labels:
+        app: moodtunes
+    spec:
+      containers:
+      - name: moodtunes
+        image: gcr.io/PROJECT_ID/moodtunes:v1
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+---
+kubectl apply -f deployment.yaml
+kubectl rollout status deployment/moodtunes</div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">6</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Install NGINX Ingress Controller</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Installed the NGINX Ingress Controller using Helm. This creates a GCP Load Balancer automatically and provisions an external IP address that becomes the public entry point for all traffic.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --create-namespace
+
+# Wait for external IP to be assigned
+kubectl get svc -n ingress-nginx
+# NAME                       TYPE           EXTERNAL-IP
+# ingress-nginx-controller   LoadBalancer   34.XX.XX.XX</div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">7</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Install cert-manager for Automatic TLS</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Installed cert-manager — a Kubernetes operator that automatically requests, installs, and renews TLS certificates from Let's Encrypt. Created a ClusterIssuer resource pointing to Let's Encrypt's ACME endpoint.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
+
+# Create ClusterIssuer
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: ugochukwuafokwalam@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+    - http01:
+        ingress:
+          class: nginx</div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">8</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Create Ingress Resource with TLS</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Created the Ingress manifest that routes traffic from the external IP to the MoodTunes service, and instructs cert-manager to issue a Let's Encrypt certificate for the domain. HTTP automatically redirects to HTTPS.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: moodtunes-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - moodtunes.yourdomain.com
+    secretName: moodtunes-tls
+  rules:
+  - host: moodtunes.yourdomain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: moodtunes-service
+            port:
+              number: 80
+
+kubectl apply -f ingress.yaml
+# cert-manager automatically provisions certificate within ~2 minutes</div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">9</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Set Up Cloud Build Trigger for CI/CD</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Connected the GitHub repository to Cloud Build. Created a cloudbuild.yaml file that builds the Docker image, pushes to GCR, and triggers a Kubernetes rolling update — automatically on every push to main.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/moodtunes:$COMMIT_SHA', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/moodtunes:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - set
+  - image
+  - deployment/moodtunes
+  - moodtunes=gcr.io/$PROJECT_ID/moodtunes:$COMMIT_SHA
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=moodtunes-cluster'</div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">10</div>
+          <div>
+            <h4 style="color:var(--navy);margin-bottom:0.4rem;">Verify the Full Stack is Running</h4>
+            <p style="color:var(--muted);font-size:0.875rem;margin-bottom:0.5rem;">Final verification — checked that all pods are running healthy, the certificate is issued, and the app loads over HTTPS in a browser.</p>
+            <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;">kubectl get pods
+# NAME                         READY   STATUS    RESTARTS
+# moodtunes-xxxxx-yyy          1/1     Running   0
+# moodtunes-xxxxx-zzz          1/1     Running   0
+
+kubectl get certificate
+# NAME            READY   SECRET          AGE
+# moodtunes-tls   True    moodtunes-tls   3m
+
+# Open browser → https://moodtunes.yourdomain.com
+# ✅ Padlock icon visible — TLS working
+# ✅ App loads — React app served from GKE</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -104,14 +314,15 @@ Node Pool: Auto-managed worker nodes
     <p class="section-label">Lessons Learned</p>
     <h2 class="section-title">What I <span>Took Away</span></h2>
     <div class="divider"></div>
-    <div class="lesson-card"><h4>Kubernetes Orchestrates So You Don't Have To</h4><p>Kubernetes handles pod restarts, rolling updates, health checks, and traffic routing automatically. The cluster breathes — expanding when stressed, contracting when calm — without manual intervention.</p></div>
-    <div class="lesson-card"><h4>Ingress Is the Right Pattern for Production</h4><p>Exposing individual services via LoadBalancer type creates one cloud load balancer per service — expensive and unmanageable at scale. NGINX Ingress consolidates all external traffic through one entry point with path-based routing.</p></div>
-    <div class="lesson-card"><h4>Automate Certificate Management</h4><p>Manual TLS certificate management is a reliability risk — expired certificates take down HTTPS silently. cert-manager with Let's Encrypt automates renewal well before expiry, eliminating this failure mode entirely.</p></div>
+    <div class="lesson-card"><h4>Multi-Stage Builds Are Non-Negotiable for Production</h4><p>A single-stage Node.js build produces an image over 1GB. A multi-stage build with Nginx Alpine produces under 100MB. Smaller images mean faster pulls, smaller attack surface, and lower storage costs — all for the same running application.</p></div>
+    <div class="lesson-card"><h4>NGINX Ingress Is the Right Pattern at Scale</h4><p>Creating a LoadBalancer service for every Kubernetes deployment creates one GCP load balancer per service — expensive and unmanageable. One NGINX Ingress controller handles all external traffic and routes by hostname or path. One load balancer for everything.</p></div>
+    <div class="lesson-card"><h4>cert-manager Makes HTTPS Maintenance-Free</h4><p>Manual TLS certificate management is a reliability risk — expired certs silently kill HTTPS. cert-manager renews Let's Encrypt certificates automatically 30 days before expiry. Once configured, you never think about certificates again.</p></div>
+    <div class="lesson-card"><h4>Cloud Build Closes the Loop</h4><p>Without CI/CD, deploying an update means manually building, tagging, pushing, and rolling out. With Cloud Build, every git push does all of that automatically in under 3 minutes. The pipeline is the deployment.</p></div>
     <div style="margin-top:1.5rem;">
-      <div class="tags"><span class="tag">GKE</span><span class="tag">Kubernetes</span><span class="tag">React</span><span class="tag">NGINX Ingress</span><span class="tag">Let's Encrypt</span><span class="tag">GCR</span><span class="tag">Cloud Build</span><span class="tag">cert-manager</span><span class="tag">GCP</span></div>
+      <div class="tags"><span class="tag">GKE</span><span class="tag">Kubernetes</span><span class="tag">React</span><span class="tag">Docker</span><span class="tag">NGINX Ingress</span><span class="tag">Let's Encrypt</span><span class="tag">GCR</span><span class="tag">Cloud Build</span><span class="tag">cert-manager</span><span class="tag">Multi-Stage Build</span></div>
     </div>
     <div class="quote-block" style="margin-top:2rem;">
-      ✦ Spiritual Reflection: Kubernetes orchestrates containers the way the Lord orchestrates our experiences — each pod assigned a purpose, each service connected to a greater whole.
+      ✦ Spiritual Reflection: Kubernetes orchestrates containers the way the Lord orchestrates our experiences — each pod assigned a purpose, each service connected to a greater whole. The system breathes without you forcing it to.
     </div>
   </div>
 

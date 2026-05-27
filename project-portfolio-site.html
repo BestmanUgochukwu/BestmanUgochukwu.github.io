@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>This Portfolio Site | Bestman Afokwalam</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-brand">B. Afokwalam</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="projects.html" class="active">Projects</a>
+      <a href="spiritual.html">Spiritual Integration</a><a href="ethics.html">Ethical Dilemma</a>
+      <a href="resume.html">Résumé</a><a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="project-detail-hero">
+    <div style="max-width:1000px;margin:0 auto;">
+      <a href="projects.html" class="project-nav-btn" style="margin-bottom:1.25rem;display:inline-block;">← Back to Projects</a>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+        <div style="font-size:2rem;">🗂️</div>
+        <div>
+          <h1>This Portfolio Site — Built and Deployed from Scratch</h1>
+          <p>HTML · CSS · GitHub Pages · AWS Amplify · CI/CD — the site you are reading right now</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-meta-bar">
+    <div class="project-meta-bar-inner">
+      <div class="meta-item"><strong>Hosting</strong>GitHub Pages + AWS Amplify</div>
+      <div class="meta-item"><strong>Stack</strong>HTML · CSS · No Frameworks</div>
+      <div class="meta-item"><strong>Deployment</strong>Continuous — every GitHub push auto-deploys</div>
+      <div class="meta-item"><strong>Live URL</strong><a href="https://bestmanugochukwu.github.io" target="_blank" style="color:var(--gold);">bestmanugochukwu.github.io</a></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">What This Project Is</p>
+    <h2 class="section-title">A Portfolio That Is <span>Also a Project</span></h2>
+    <div class="divider"></div>
+    <p style="color:var(--muted);margin-bottom:1rem;">This portfolio is not just a showcase — it is itself a demonstration of the skills it documents. It was designed from scratch, built with clean HTML and CSS, hosted on GitHub Pages, connected to AWS Amplify for automatic continuous deployment, and updated through a real CI/CD workflow. Every time content changes, a git commit triggers an automatic rebuild and deployment within 2–3 minutes.</p>
+    <p style="color:var(--muted);margin-bottom:1.5rem;">The deliberate choice to use plain HTML and CSS — rather than React, Vue, or any other framework — was a technical and philosophical decision. A framework adds kilobytes, dependencies, and complexity. A portfolio viewed by a recruiter on a mobile connection should load instantly. Simplicity is a form of professionalism.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem;">
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">16+</div><div style="font-size:0.78rem;color:var(--muted);">HTML pages built</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">2–3 min</div><div style="font-size:0.78rem;color:var(--muted);">Auto-deploy on push</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">Free</div><div style="font-size:0.78rem;color:var(--muted);">Hosting cost (GitHub + AWS free tier)</div></div>
+      <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1rem;text-align:center;"><div style="font-size:1.4rem;font-weight:700;color:var(--navy);">HTTPS</div><div style="font-size:0.78rem;color:var(--muted);">Auto-provisioned SSL</div></div>
+    </div>
+  </div>
+
+  <!-- Step by Step Build -->
+  <div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="section-label">Exactly How I Built and Deployed This</p>
+      <h2 class="section-title">Complete <span>Build Process</span></h2>
+      <div class="divider"></div>
+      <div style="display:grid;gap:1rem;">
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">1</div>
+          <div><h4 style="color:var(--navy);margin-bottom:0.4rem;">Create GitHub Account and Repository</h4><p style="color:var(--muted);font-size:0.875rem;">Created a GitHub account and a repository named exactly <code style="background:var(--accent-bg);padding:0.1rem 0.3rem;border-radius:3px;font-size:0.82rem;">bestmanugochukwu.github.io</code> — this naming format is required by GitHub Pages. The repository name must match your GitHub username exactly. Set visibility to Public and initialized with a README.</p></div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">2</div>
+          <div><h4 style="color:var(--navy);margin-bottom:0.4rem;">Enable GitHub Pages</h4><p style="color:var(--muted);font-size:0.875rem;">In the repository Settings → Pages → Source: Deploy from branch → main → / (root). GitHub Pages automatically builds from the root folder of the main branch and serves it at the public URL. SSL certificate is provisioned automatically within a few hours.</p></div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">3</div>
+          <div><h4 style="color:var(--navy);margin-bottom:0.4rem;">Design the Portfolio Structure</h4><p style="color:var(--muted);font-size:0.875rem;">Planned the site before writing any code: what pages are needed (index, projects, spiritual, ethics, resume, contact), what sections each page needs, what the color palette and typography should be. The entire design system — navy, gold, cream — was planned upfront in a single style.css file with CSS custom properties (variables).</p></div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">4</div>
+          <div><h4 style="color:var(--navy);margin-bottom:0.4rem;">Build All HTML Pages with Semantic Structure</h4><p style="color:var(--muted);font-size:0.875rem;">Wrote each page using clean semantic HTML5 — nav, section, header, footer elements. All pages share the same navigation bar, the same CSS file, and the same footer. Content was written in a separate document first, then pasted into the HTML to avoid writing directly in code and making mistakes.</p></div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">5</div>
+          <div><h4 style="color:var(--navy);margin-bottom:0.4rem;">Implement Responsive CSS with Mobile Support</h4><p style="color:var(--muted);font-size:0.875rem;">Built the entire design system in CSS using custom properties for colors, CSS Grid and Flexbox for layouts, and media queries for mobile responsiveness. Added <code style="background:var(--accent-bg);padding:0.1rem 0.3rem;border-radius:3px;font-size:0.82rem;">touch-action: manipulation</code> to all buttons to eliminate the 300ms tap delay on mobile devices.</p></div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">6</div>
+          <div><h4 style="color:var(--navy);margin-bottom:0.4rem;">Upload All Files to GitHub</h4><p style="color:var(--muted);font-size:0.875rem;">Used GitHub's web interface to upload all HTML and CSS files directly to the root of the repository. Files are placed in the root folder — not inside any subfolder — because GitHub Pages looks for index.html at the root. After upload, GitHub Pages rebuilds the site automatically within 1–2 minutes.</p></div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">7</div>
+          <div><h4 style="color:var(--navy);margin-bottom:0.4rem;">Connect AWS Amplify for Automatic Deployments</h4><p style="color:var(--muted);font-size:0.875rem;">In the AWS Amplify console, created a new app, connected it to the GitHub repository using OAuth authorization, selected the main branch, and configured the build settings with a minimal YAML file (since this is a static site with no build step). Amplify now monitors the GitHub repository — every push triggers an automatic redeploy within 2–3 minutes.</p>
+          <div class="arch-box" style="font-size:0.78rem;padding:0.75rem;margin-top:0.5rem;">version: 1
+frontend:
+  phases:
+    build:
+      commands:
+        - echo "Static site"
+  artifacts:
+    baseDirectory: /
+    files:
+      - '**/*'</div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-bg);border:1px solid var(--border);border-radius:6px;padding:1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;">
+          <div style="background:var(--navy);color:var(--gold);font-weight:700;font-size:1rem;padding:0.5rem 0.8rem;border-radius:4px;text-align:center;min-width:2.5rem;">8</div>
+          <div><h4 style="color:var(--navy);margin-bottom:0.4rem;">Ongoing Updates — The CI/CD Workflow</h4><p style="color:var(--muted);font-size:0.875rem;">Every update to the portfolio follows the same workflow: edit the HTML file in the GitHub web editor → commit changes → Amplify detects the push → rebuilds and deploys within 2–3 minutes → live site reflects the update. This is CI/CD applied to a personal project — the same pipeline principle used in enterprise DevOps, scaled down to one person.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="section-label">Technical Decisions</p>
+    <h2 class="section-title">Why I Built It <span>This Way</span></h2>
+    <div class="divider"></div>
+    <div class="lesson-card"><h4>Plain HTML/CSS Over a Framework</h4><p>React, Next.js, and Vue would have added hundreds of kilobytes to every page load. A portfolio is a marketing document — it must load instantly on any connection. Plain HTML loads in milliseconds. The technical choice reflects the professional understanding that the right tool for the job is not always the most powerful one.</p></div>
+    <div class="lesson-card"><h4>GitHub Pages + AWS Amplify — Two Hosting Layers</h4><p>GitHub Pages provides the primary URL (bestmanugochukwu.github.io) and is completely free with automatic SSL. AWS Amplify adds a second deployment URL, faster CDN delivery, and demonstrates real cloud hosting skills. Using both shows understanding of the full deployment stack.</p></div>
+    <div class="lesson-card"><h4>CSS Custom Properties for Maintainability</h4><p>Every color in the site is defined once as a CSS variable (--navy, --gold, --cream). Changing the entire color scheme requires editing 4 lines. This is the same principle as environment variables in a cloud application — define once, use everywhere, change in one place.</p></div>
+    <div class="lesson-card"><h4>Clickable Project Detail Pages</h4><p>Rather than just listing projects, every major project links to a dedicated detail page with architecture diagrams, the exact commands used, problems encountered and how they were solved, and lessons learned. This mirrors how engineers document work in production — not just what was built, but how and why.</p></div>
+    <div style="margin-top:1.5rem;">
+      <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">CSS Grid</span><span class="tag">Flexbox</span><span class="tag">GitHub Pages</span><span class="tag">AWS Amplify</span><span class="tag">CI/CD</span><span class="tag">Responsive Design</span><span class="tag">Mobile First</span></div>
+    </div>
+    <div class="quote-block" style="margin-top:2rem;">
+      ✦ Spiritual Reflection: D&C 58:27 — "be anxiously engaged in a good cause." This portfolio was not assigned. No professor told me to build 16 pages of project documentation. I built it because being anxiously engaged means acting before you are asked, and documenting your journey for others who may follow the same path.
+    </div>
+    <div style="margin-top:1.5rem;">
+      <a href="https://bestmanugochukwu.github.io" target="_blank" class="btn btn-gold">Visit the Live Site →</a>
+    </div>
+  </div>
+
+  <footer><p>© 2026 <span>Bestman Ugochukwu Afokwalam</span> · bestmanugochukwu.github.io</p></footer>
+</body>
+</html>
